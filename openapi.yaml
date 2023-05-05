@@ -134,7 +134,7 @@ paths:
           in: query
           description: >-
             Количество элементов, которые должны быть загружены за один запрос
-            для поля allAvalibleProducts
+            для поля products
           required: true
           schema:
             type: integer
@@ -143,7 +143,7 @@ paths:
           in: query
           description: >-
             Определяет, с какого элемента нужно начинать загрузку данных для
-            поля allAvalibleProducts
+            поля products
           required: true
           schema:
             type: integer
@@ -159,35 +159,11 @@ paths:
                 Пример ответа:
                   value: |-
                     {
-                        "mainProduct": {
-                          "productID": "acde070d-8c4c-4f0d-9d8a-162843c10333",
-                          "productTitle": "Полиуретановое покрытие для кузова",
-                          "productShortDescription": "ОНБ БАСТИОН колеруемое ПОЛИУРЕТАНОВОЕ покрытие для защиты кузова Бастион – это новейшая разработка в сфере полиуретановых защитных покрытий не имеющее аналогов.",
-                          "productFullDescription": "ОНБ БАСТИОН колеруемое ПОЛИУРЕТАНОВОЕ покрытие для защиты кузова Бастион – это новейшая разработка в сфере полиуретановых защитных покрытий не имеющее аналогов. Если вы работали подобными материалами, то вы в курсе на сколько они прочные устойчивы к механическим повреждениям и истиранию и тем более Вы в курсе их очень значимых недостатков, таких как: чрезмерная жесткость, низкая...",
-                          "productSpecification": {
-                            "Цвет": "Белый",
-                            "Консистенция": "паста",
-                            "Вместимость": "2 кг",
-                            "Страна производитель": "Россия"
-                          },
-                          "productPrice": 100.99,
-                          "productMainImageURL": "https://image.com",
-                          "productAdditionalImages": [
-                            [
-                              "https://image5.com",
-                              "https://image6.com",
-                              "https://image7.com"
-                            ]
-                          ],
-                          "productBadge": {
-                            "badgeType": "discount",
-                            "badgeValue": "-5%"
-                          }
-                        },
-                        "allAvalibleProducts": [
+                      "products": [
                           {
                             "productID": "acde070d-8c4c-4f0d-9d8a-162843c10333",
                             "productTitle": "Антикор",
+                            "isMainProduct": true,
                             "productShortDescription": "Кузов любого автомобиля подвержен коррозии. Ускоряют разрушение метала влага, высокая температура воздуха, соль и другие реагенты на дорогах. ",
                             "productFullDescription": "Кузов любого автомобиля подвержен коррозии. Ускоряют разрушение метала влага, высокая температура воздуха, соль и другие реагенты на дорогах. Защитить внутренние детали кузова Вам поможет антикоррозийное покрытие мовиль ОНБ. ML ОНБ – Разработка по новым технологиям, это не тот мовиль к которому Вы привыкли.",
                             "productSpecification": {
@@ -210,6 +186,7 @@ paths:
                             "productID": "acde070d-8c4c-4f0d-9d8a-162843c1012312",
                             "productTitle": "Лак",
                             "productShortDescription": "Лак для окрашивания",
+                            "isMainProduct": false,
                             "productFullDescription": "Лак для окрашивания для деталей автомобилей",
                             "productSpecification": {
                               "Цвет": "Зелены",
@@ -230,6 +207,7 @@ paths:
                           {
                             "productID": "acde070d-8c4c-4f0d-9d8a-162843c10333",
                             "productTitle": "Product 1",
+                            "isMainProduct": false,
                             "productShortDescription": "Product Short Description",
                             "productFullDescription": "Product Full Description",
                             "productSpecification": {
@@ -764,15 +742,12 @@ components:
     ProductsResponse:
       type: object
       properties:
-        mainProduct:
-          $ref: '#/components/schemas/Product'
-        allAvalibleProducts:
+        products:
           type: array
           items:
             $ref: '#/components/schemas/Product'
       required:
-        - mainProduct
-        - allAvalibleProducts
+        - products
     Product:
       type: object
       properties:
@@ -782,6 +757,9 @@ components:
         productTitle:
           type: string
           example: Product 1
+        isMainProduct:
+          type: boolean
+          example: true
         productShortDescription:
           type: string
           example: Product Short Description
