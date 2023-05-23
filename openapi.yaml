@@ -129,7 +129,7 @@ paths:
                   type: string
                 example:
                   message: Wrong SMS code                
-  /product:
+  /products:
     get:
       tags:
         - products
@@ -163,7 +163,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductsResponse'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
         '400':
           description: Invalid status value
           content:
@@ -528,10 +530,8 @@ components:
         - accessToken
         - refreshToken
     ProductsResponse:
-      type: object
+      type: array
       properties:
-        products:
-          type: array
           items:
             $ref: '#/components/schemas/Product'
       required:
@@ -568,7 +568,7 @@ components:
           items:
             type: string
             format: uri
-            example:
+          example:
               - https://image1.com
               - https://image2.com
               - https://image3.com
@@ -690,7 +690,7 @@ components:
           example: 202032.21
           nullable: true
           description: Can be `null`. When create order.
-        orderAdress:
+        orderAddress:
           $ref: '#/components/schemas/Address'
         orderStatus:
           type: string
