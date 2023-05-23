@@ -255,7 +255,7 @@ paths:
         - user
       summary: Получение списка адресов юзера.
       description: Данный endpoint позволяет получить список адресов юзера.
-      operationId: addUserNewAdress
+      operationId: userAddressList
       security:
         - JWT: []      
       responses:
@@ -282,7 +282,7 @@ paths:
         - user
       summary: Добавление нового адреса в сохраненые адреса юзера.
       description: Данный endpoint добавить новый адрес для юзера.
-      operationId: addUserNewAdress
+      operationId: userNewAddress
       security:
         - JWT: []      
       requestBody:
@@ -313,7 +313,7 @@ paths:
         - user
       summary: Обновление адреса юзера.
       description: Данный endpoint добавить обновить адрес для юзера.
-      operationId: addUserNewAdress
+      operationId: userAddressUpdate
       parameters:
         - name: addressID
           in: path
@@ -351,7 +351,7 @@ paths:
         - user
       summary: Удаление адреса юзера.
       description: Данный endpoint добавить удалить адрес для юзера.
-      operationId: addUserNewAdress
+      operationId: userAddressDelete
       parameters:
         - name: addressID
           in: path
